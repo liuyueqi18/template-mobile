@@ -13,7 +13,8 @@ const routes: Array<RouteRecordRaw> = [
       title: "个人中心",
       requiresAuth: false,
     },
-    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+    component: () =>
+      import(/* webpackChunkName: "home" */ "../modules/Home.vue"),
   },
   {
     path: "/about",
@@ -23,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true,
     },
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../modules/About.vue"),
   },
 ];
 
