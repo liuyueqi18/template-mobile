@@ -1,26 +1,56 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import {
+  createRouter,
+  createWebHashHistory,
+  RouteLocationNormalized,
+  RouteRecordRaw,
+} from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    meta: {
+      title: "个人中心",
+      requiresAuth: false,
+    },
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
   },
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    meta: {
+      title: "个人中心",
+      requiresAuth: true,
+    },
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
 });
+
+router.beforeEach(
+  (to: RouteLocationNormalized, from: RouteLocationNormalized, next) => {
+    const needAuth = to.matched.find((record) => record.meta.requiresAuth);
+    const needToSetTitle = to.matched.find((record) => record.meta.title);
+    document.title = (needToSetTitle?.meta.title as string) ?? "template";
+    if (needAuth) {
+      if (to.name === "Login") {
+        next();
+        return;
+      }
+      if (localStorage.getItem("token")) {
+        next();
+      } else {
+        next({ name: "Login" });
+      }
+    } else {
+      next();
+    }
+  }
+);
 
 export default router;
