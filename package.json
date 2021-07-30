@@ -5,7 +5,7 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "stage": "vue-cli-service build --mode stage",
-    "build": "vue-cli-service build --mode prod",
+    "prod": "vue-cli-service build --mode prod",
     "webpack": "webpack --version"
   },
   "dependencies": {

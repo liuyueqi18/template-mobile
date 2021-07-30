@@ -1,24 +1,19 @@
-# phone
+# template-mobile
 
+`移动端通用模版`
 ## Project setup
 ```
 yarn install
 ```
-
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for dev
 ```
-yarn serve
+yarn start
 ```
-
-### Compiles and minifies for production
+### Compiles and minifies for stage
 ```
-yarn build
+yarn prod
 ```
-
-### Lints and fixes files
+### Compiles and minifies for prod
 ```
-yarn lint
+yarn prod
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
