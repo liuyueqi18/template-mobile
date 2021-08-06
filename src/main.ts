@@ -1,4 +1,5 @@
 import "vant/lib/index.css"; // index.css 要先在Vant之前引入
+import "./theme/vant.css";
 import { ComponentPublicInstance, createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
