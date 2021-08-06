@@ -1,3 +1,4 @@
+import store from "@/store";
 import {
   createRouter,
   createWebHashHistory,
@@ -7,11 +8,20 @@ import {
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/login",
+    name: "Login",
+    meta: {
+      title: "登陆",
+    },
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../modules/Login/index.vue"),
+  },
+  {
     path: "/",
     name: "Home",
     meta: {
       title: "个人中心",
-      requiresAuth: false,
+      requiresAuth: true,
     },
     component: () =>
       import(/* webpackChunkName: "home" */ "../modules/Home.vue"),
@@ -35,19 +45,16 @@ const router = createRouter({
 
 router.beforeEach(
   (to: RouteLocationNormalized, from: RouteLocationNormalized, next) => {
-    const needAuth = to.matched.find((record) => record.meta.requiresAuth);
-    const needToSetTitle = to.matched.find((record) => record.meta.title);
-    document.title = (needToSetTitle?.meta.title as string) ?? "template";
-    if (needAuth) {
-      if (to.name === "Login") {
-        next();
+    document.title = (to.meta.title as string) ?? "template";
+    if (to.meta.requiresAuth) {
+      if (!localStorage.getItem("token")) {
+        next({
+          path: "/login",
+          query: { redirect: to.fullPath },
+        });
         return;
       }
-      if (localStorage.getItem("token")) {
-        next();
-      } else {
-        next({ name: "Login" });
-      }
+      next();
     } else {
       next();
     }
