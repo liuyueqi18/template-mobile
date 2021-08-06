@@ -12,6 +12,7 @@ const app = createApp(App);
 window.addEventListener(
   "error",
   (e) => {
+    // TODO
     console.log(e);
     return true;
   },
@@ -19,6 +20,7 @@ window.addEventListener(
 );
 // 处理未捕获的异常，主要是promise内部异常.统一抛给 onerror
 window.addEventListener("unhandledrejection", (e) => {
+  // TODO
   console.log(e);
   throw e.reason;
 });
@@ -28,6 +30,7 @@ app.config.errorHandler = function (
   vm: ComponentPublicInstance | null,
   info: string
 ) {
+  // TODO
   console.log(err, vm, info);
 };
 
