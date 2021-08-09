@@ -18,7 +18,6 @@ const baseModule: Module<State, unknown> = {
   },
   mutations: {
     login(state, userInfo) {
-      console.log(`userInfo base`, userInfo);
       state.login = true;
       state.userInfo = userInfo;
     },

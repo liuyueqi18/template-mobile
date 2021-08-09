@@ -1,5 +1,4 @@
 import { UserInfo } from "@/utils/types";
-import axios from "axios";
 
 /**
  * 登陆
