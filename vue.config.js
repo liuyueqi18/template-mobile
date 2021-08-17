@@ -1,4 +1,8 @@
+// eslint-disable-next-line
+const WebpackBar = require("webpackbar");
+
 module.exports = {
+  productionSourceMap: true, // 生产环境是否要生成 sourceMap
   chainWebpack: (config) => {
     config.resolve.symlinks(false);
     config.module
@@ -13,6 +17,10 @@ module.exports = {
   },
 
   devServer: {
+    // port: 8080,
+    // host: '0.0.0.0',
+    // https: false,
+    // open: true
     disableHostCheck: true, //webpack4.0 开启热更新
   },
 
@@ -20,5 +28,11 @@ module.exports = {
     externals: {
       //
     },
+    plugins: [
+      new WebpackBar({
+        name: `移动模版`,
+        color: "#58C9B9",
+      }),
+    ],
   },
 };

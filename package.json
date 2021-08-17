@@ -36,6 +36,7 @@
     "postcss-px-to-viewport": "^1.1.1",
     "prettier": "^2.2.1",
     "typescript": "~4.1.5",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "webpackbar": "^5.0.0-3"
   }
 }
