@@ -75,5 +75,5 @@
 
 /* example tabs */
 :root {
-  /* --van-tabs-bottom-bar-color: var(--van-primary-color); */
+  --van-tabs-bottom-bar-color: var(--van-primary-color);
 }
